@@ -32,6 +32,7 @@ class Robot
   def pick_up(item)
     return if (items_weight + item.weight) > WEIGHT_CAPACITY
     self.equipped_weapon = item if item.is_a?(Weapon)
+    item.feed(self) if health <= 80
     items << item
     self.items_weight += item.weight
   end
@@ -53,9 +54,12 @@ class Robot
 
   def attack(target)
     if equipped_weapon.nil?
-      target.wound(DEFAULT_ATTACK_POINT)
+      target.wound(DEFAULT_ATTACK_POINT) if attackable?(target, 1)
     else
-      equipped_weapon.hit(target)
+      if attackable?(target, equipped_weapon.range)
+        equipped_weapon.hit(target)
+        self.equipped_weapon = nil
+      end
     end
   end
 
@@ -64,4 +68,8 @@ class Robot
     attack(target)
   end
 
+  def attackable?(target, range)
+    (position[0] - target.position[0]).abs <= range &&
+    (position[1] - target.position[1]).abs <= range
+  end
 end
