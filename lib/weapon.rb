@@ -1,7 +1,8 @@
 class Weapon < Item
   DEFAULT_RANGE = 1
 
-  attr_reader :damage, :range
+  attr_reader :damage
+  attr_reader :range
 
   def initialize(name, weight, damage)
     super(name, weight)
@@ -9,7 +10,7 @@ class Weapon < Item
     @range = DEFAULT_RANGE
   end
 
-  def hit(target)
-    target.wound(damage)
+  def hit(robot)
+    robot.wound(damage)
   end
 end

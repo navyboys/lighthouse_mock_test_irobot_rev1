@@ -7,9 +7,8 @@ describe Robot do
 
   describe "#heal!" do
     it "raise error when heal a dead robot" do
-      @robot.wound(101)
+      @robot.wound(151)
       expect { @robot.heal!(10) }.to raise_error(RobotAlreadyDeadError)
-      @robot.health = 100
     end
 
     it "calls #heal method" do

@@ -6,7 +6,7 @@ class BoxOfBolts < Item
     super('Box of bolts', INIT_WEIGHT)
   end
 
-  def feed(target)
-    target.heal(DEFAULT_HEAL_POINT)
+  def feed(robot)
+    robot.heal(DEFAULT_HEAL_POINT)
   end
 end

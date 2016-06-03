@@ -15,8 +15,9 @@ end
 # Safely require the files that are expected to be created.
 safe_require 'robot'
 safe_require 'item'
-safe_require 'weapon'
 safe_require 'box_of_bolts'
+safe_require 'battery'
+safe_require 'weapon'
 safe_require 'laser'
 safe_require 'grenade'
 safe_require 'plasma_cannon'
