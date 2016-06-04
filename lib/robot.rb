@@ -9,9 +9,10 @@ class Robot
   attr_reader :position
   attr_reader :items
   attr_reader :items_weight
-  attr_reader :health
 
-  attr_accessor :equipped_weapon, :shield_points
+  attr_accessor :health
+  attr_accessor :equipped_weapon
+  attr_accessor :shield_points
 
   def initialize
     @position = [0,0]
@@ -27,29 +28,28 @@ class Robot
     @@list
   end
 
-  # TODO: Danger, should be removed
-  def self.list=(list)
-    @@list = list
-  end
-
   def self.in_position(x, y)
-    @@list.select { |robot| robot.position == [x,y] }
+    self.list.select { |robot| robot.position == [x,y] }
   end
 
   def move_left
     @position[0] -= 1
+    self
   end
 
   def move_right
     @position[0] += 1
+    self
   end
 
   def move_down
     @position[1] -= 1
+    self
   end
 
   def move_up
     @position[1] += 1
+    self
   end
 
   def pick_up(item)
@@ -86,7 +86,7 @@ class Robot
       target.wound(DEFAULT_ATTACK_POINT) if attackable?(target, 1)
     else
       if attackable?(target, equipped_weapon.range)
-        equipped_weapon.hit(target)
+        equipped_weapon.hit(target, self)
         @equipped_weapon = nil
       end
     end

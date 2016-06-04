@@ -10,7 +10,7 @@ class Weapon < Item
     @range = DEFAULT_RANGE
   end
 
-  def hit(robot)
-    robot.wound(damage)
+  def hit(target, attacker=nil)
+    target.wound(damage)
   end
 end

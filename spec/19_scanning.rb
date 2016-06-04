@@ -4,7 +4,8 @@ describe Robot do
   describe '#scan' do
     before :each do
       # allow(Robot).to receive(:list).and_return([])
-      Robot.list = []
+      # Black Magic
+      Robot.class_variable_set :@@list, []
       @robot = Robot.new
     end
 

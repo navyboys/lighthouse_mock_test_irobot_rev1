@@ -27,7 +27,7 @@ describe Robot do
     it "uses the equipped weapon in attack" do
       @robot.equipped_weapon = @weapon
 
-      expect(@weapon).to receive(:hit).with(@robot2)
+      expect(@weapon).to receive(:hit).with(@robot2, @robot)
       @robot.attack(@robot2)
     end
   end
